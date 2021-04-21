@@ -1,3 +1,15 @@
-<p>
-  estado-list works!
-</p>
+<p-table [value]="listaDeEstados | async">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Nome</th>
+          <th>Abreviação</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-estado>
+      <tr>
+          <td>{{estado.nome}}</td>
+          <td>{{estado.abreviacao}}</td>
+      </tr>
+  </ng-template>
+</p-table>
+
