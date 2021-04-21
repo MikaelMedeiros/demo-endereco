@@ -12,9 +12,9 @@ import { EstadoService } from '../../service/estado.service';
 export class EstadoListComponent implements OnInit {
 
   listaDeEstados: Estado[] = [];
+  estadoSelecionado: Estado = {nome: '', abreviacao: ''};
   errorObject = null;
   display: boolean;
-
 
   constructor(private estadoService: EstadoService) { }
 
@@ -23,7 +23,7 @@ export class EstadoListComponent implements OnInit {
   }
 
   listarEstados() {
-    this.listaDeEstados = this.estadoService.listarEstados().pipe(
+    this.listaDeEstados = this.estadoService.getEstados().pipe(
       catchError(err => {
         this.errorObject = err;
         return throwError(err);
@@ -31,12 +31,23 @@ export class EstadoListComponent implements OnInit {
     );
   }
 
-  editarEstado() {
-
+  mudarDisplay($event) {
+    this.display = $event;
+    this.listarEstados();
   }
 
-  mostrarDialog() {
+  mostrarDialogNovo() {
     this.display = true;
+  }
+
+  mostrarDialogEditar(estado) {
+    this.estadoSelecionado = estado;
+    this.display = true;
+  }
+
+  removerEstado(estado) {
+    const _id = estado;
+    this.estadoService.deleteEstado(_id);
   }
 
 }

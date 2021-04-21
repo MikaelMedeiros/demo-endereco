@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { throwError } from 'rxjs';
 import { Estado } from '../../model/estado.interface';
 import { EstadoService } from '../../service/estado.service';
 
@@ -8,44 +9,46 @@ import { EstadoService } from '../../service/estado.service';
   templateUrl: './estado-detail.component.html',
   styleUrls: ['./estado-detail.component.css']
 })
-export class EstadoDetailComponent implements OnInit {
+export class EstadoDetailComponent {
 
   @Input() display: boolean;
   @Output() mudarDisplay = new EventEmitter<boolean>();;
-
-  estado: Estado;
-  formularioEstado = new FormControl();
+  @Input() estado: Estado;
 
   constructor(private estadoService: EstadoService) { }
 
-  ngOnInit() {
-    this.montarFormulario();
-  }
-
-  montarFormulario() {
-    this.estado = {nome: '', abreviacao: ''};  
-  }
-
   salvarEstado() {
-    this.novoEstado();
-  }
-
-  novoEstado() {   
-    if(this.estado.nome && this.estado.abreviacao) {
-      this.estadoService.incluirEstado(this.estado).subscribe(
-        data => {
-          console.log(data);
-          this.fechar();     
-        },
-        error => alert(error.error.erro)
-     );
+    if(this.estado._id) {
+      this.atualizarEstado();
     } else {
-      alert('Campos obrigatórios');
+      this.novoEstado();
     }
   }
 
-  atualizarEstado() {
+  novoEstado() {
+    this.validarFormulario();
+    this.estadoService.postEstado(this.estado).subscribe(
+      data => {
+        console.log(data);
+        this.fechar();
+      },
+      error => alert(error.error)
+    );
+  }
 
+  atualizarEstado() {
+    this.validarFormulario();
+    this.estadoService.putEstado(this.estado).subscribe(
+      data => {
+        console.log(data);
+        this.fechar();
+      },
+      error => alert(error.error.erro)
+    );
+  }
+
+  private validarFormulario () {
+    if (!this.estado.nome || !this.estado.abreviacao) throw new Error('Campos obrigatórios');     
   }
 
   fechar() {

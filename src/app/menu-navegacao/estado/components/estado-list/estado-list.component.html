@@ -1,21 +1,26 @@
-<app-estado-detail [(display)]="display"></app-estado-detail> 
+<app-estado-detail [display]="display" (mudarDisplay)="mudarDisplay($event)" [estado]="estadoSelecionado"></app-estado-detail>
 
-<p-table [value]="listaDeEstados | async">
+<p-table [value]="listaDeEstados | async" selectionMode="single" [paginator]="true" [rows]="15">
   <ng-template pTemplate="header">
       <tr>
           <th>Nome</th>
           <th>Abreviação</th>
+          <th></th>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-estado>
       <tr>
           <td>{{estado.nome}}</td>
           <td>{{estado.abreviacao}}</td>
+          <td>
+            <p-button icon="pi pi-pencil" (click)="mostrarDialogEditar(estado)"></p-button>
+            <p-button icon="pi pi-trash" (click)="removerEstado(estado)"></p-button>
+          </td>
       </tr>
   </ng-template>
   <ng-template pTemplate="summary" let-rowData>
     <div style="text-align:left">
-        <button type="button" pButton icon="pi pi-plus" (click)="mostrarDialog()" label="Novo"></button>
+        <button type="button" pButton icon="pi pi-plus" (click)="mostrarDialogNovo()" label="Novo"></button>
     </div>
   </ng-template>
 </p-table>

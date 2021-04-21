@@ -13,24 +13,39 @@ export class EstadoService {
 
   constructor(private http: HttpClient) { }
 
-  listarEstados(): Observable<Estado[]> {
-
+  getEstados(): Observable<Estado[]> {
     const url = `${this.base_url}/estados`;
 
     return this.http.get(url);
   }
 
-  incluirEstado(estado: Estado): Observable<Estado> {
-
+  postEstado(estado: Estado): Observable<Estado> {
     const url = `${this.base_url}/estados`;
+    
+    return this.http.post<Estado>(url, estado, this.getCabecalho());
+  }
 
+  putEstado(estado: Estado): Observable<any> {
+    const id = estado._id;
+    const url = `${this.base_url}/estados/${id}`;
+
+    return this.http.put(url, estado, this.getCabecalho());
+  }
+
+  deleteEstado(id: number): Observable<any> {
+    const url = `${this.base_url}/estados/${id}`;
+
+    return this.http.delete(url, this.getCabecalho());
+  }
+
+  getCabecalho() {
     const header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    console.log('Estado informado: ', estado);
-    return this.http.post<Estado>(url, estado, header);
+
+    return header;
   }
 
 }
