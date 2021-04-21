@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Estado } from '../../model/estado.interface';
@@ -46,8 +46,14 @@ export class EstadoListComponent implements OnInit {
   }
 
   removerEstado(estado) {
-    const _id = estado;
-    this.estadoService.deleteEstado(_id);
+    const { _id } = estado;
+    this.estadoService.deleteEstado(_id).subscribe(
+      res => {
+        console.log(res.messagem)
+        this.listarEstados();
+      },
+      err => console.log(err)
+    );
   }
 
 }

@@ -18,7 +18,7 @@ export class EstadoDetailComponent {
   constructor(private estadoService: EstadoService) { }
 
   salvarEstado() {
-    if(this.estado._id) {
+    if (this.estado._id) {
       this.atualizarEstado();
     } else {
       this.novoEstado();
@@ -26,19 +26,10 @@ export class EstadoDetailComponent {
   }
 
   novoEstado() {
-    this.validarFormulario();
-    this.estadoService.postEstado(this.estado).subscribe(
-      data => {
-        console.log(data);
-        this.fechar();
-      },
-      error => alert(error.error)
-    );
-  }
+    if (this.validarFormulario())
+      return alert('Campos obrigatórios');
 
-  atualizarEstado() {
-    this.validarFormulario();
-    this.estadoService.putEstado(this.estado).subscribe(
+    this.estadoService.postEstado(this.estado).subscribe(
       data => {
         console.log(data);
         this.fechar();
@@ -47,8 +38,22 @@ export class EstadoDetailComponent {
     );
   }
 
-  private validarFormulario () {
-    if (!this.estado.nome || !this.estado.abreviacao) throw new Error('Campos obrigatórios');     
+  atualizarEstado() {
+    if (this.validarFormulario())
+      return alert('Campos obrigatórios');
+
+    this.estadoService.putEstado(this.estado).subscribe(
+      data => {
+        console.log(data);
+        this.fechar();
+      },
+      error => alert(error.error.erro)
+    );
+
+  }
+
+  private validarFormulario() {
+    return !this.estado.nome || !this.estado.abreviacao;
   }
 
   fechar() {
