@@ -4,7 +4,8 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   imports: [
@@ -12,16 +13,20 @@ import { ReactiveFormsModule } from '@angular/forms'
     CardModule,
     ButtonModule,
     ReactiveFormsModule,
+    FormsModule,
     InputTextModule,
-    TableModule  
+    TableModule,
+    DialogModule
   ],
   exports: [
     CommonModule,
     CardModule,
     ButtonModule,
     ReactiveFormsModule,
+    FormsModule,
     InputTextModule,
-    TableModule  
+    TableModule,
+    DialogModule
   ],
   declarations: []
 })

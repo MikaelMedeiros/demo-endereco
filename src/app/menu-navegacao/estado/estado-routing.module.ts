@@ -5,7 +5,7 @@ import { EstadoListComponent } from './components/estado-list/estado-list.compon
 const routes: Routes = [
   {
     path: '',
-    component: EstadoListComponent
+    component: EstadoListComponent,    
   },
 ];
 

@@ -13,17 +13,24 @@ export class EstadoService {
 
   constructor(private http: HttpClient) { }
 
-  listarCidade(): Observable<Estado[]> {
+  listarEstados(): Observable<Estado[]> {
+
+    const url = `${this.base_url}/estados`;
+
+    return this.http.get(url);
+  }
+
+  incluirEstado(estado: Estado): Observable<Estado> {
 
     const url = `${this.base_url}/estados`;
 
     const header = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       })
     };
-
-    return this.http.get(url, header);
+    console.log('Estado informado: ', estado);
+    return this.http.post<Estado>(url, estado, header);
   }
 
 }

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 
@@ -19,7 +20,8 @@ registerLocaleData(localePt, 'pt-BR');
     LoginComponent
    ],
   imports: [    
-    BrowserModule,    
+    BrowserModule,   
+    BrowserAnimationsModule, 
     AppRoutingModule,
     SharedModule, 
     HttpClientModule

@@ -1,3 +1,5 @@
+<app-estado-detail [(display)]="display"></app-estado-detail> 
+
 <p-table [value]="listaDeEstados | async">
   <ng-template pTemplate="header">
       <tr>
@@ -10,6 +12,11 @@
           <td>{{estado.nome}}</td>
           <td>{{estado.abreviacao}}</td>
       </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+        <button type="button" pButton icon="pi pi-plus" (click)="mostrarDialog()" label="Novo"></button>
+    </div>
   </ng-template>
 </p-table>
 

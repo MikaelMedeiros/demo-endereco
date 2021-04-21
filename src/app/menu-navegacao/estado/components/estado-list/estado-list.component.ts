@@ -7,12 +7,13 @@ import { EstadoService } from '../../service/estado.service';
 @Component({
   selector: 'app-estado-list',
   templateUrl: './estado-list.component.html',
-  styleUrls: ['./estado-list.component.css']  
+  styleUrls: ['./estado-list.component.css']
 })
 export class EstadoListComponent implements OnInit {
 
   listaDeEstados: Estado[] = [];
   errorObject = null;
+  display: boolean;
 
 
   constructor(private estadoService: EstadoService) { }
@@ -21,13 +22,21 @@ export class EstadoListComponent implements OnInit {
     this.listarEstados();
   }
 
-  listarEstados() {  
-      this.listaDeEstados = this.estadoService.listarCidade().pipe(
-        catchError(err => {
-          this.errorObject = err;
-          return throwError(err);
-        })
-      );
+  listarEstados() {
+    this.listaDeEstados = this.estadoService.listarEstados().pipe(
+      catchError(err => {
+        this.errorObject = err;
+        return throwError(err);
+      })
+    );
+  }
+
+  editarEstado() {
+
+  }
+
+  mostrarDialog() {
+    this.display = true;
   }
 
 }
