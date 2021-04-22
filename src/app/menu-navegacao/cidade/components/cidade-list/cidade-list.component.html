@@ -1,3 +1,27 @@
-<p>
-  cidade-list works!
-</p>
+<app-cidade-detail [display]="display" (mudarDisplay)="mudarDisplay($event)" [cidade]="cidadeSelecionado"></app-cidade-detail>
+
+<p-table [value]="listaDeCidades | async" selectionMode="single" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Cidade</th>
+          <th>Estado</th>
+          <th></th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-cidade>
+      <tr>
+          <td>{{cidade.nome}}</td>
+          <td>{{cidade.estadoId.nome}}</td>
+          <td>
+            <button pButton type="button" icon="pi pi-pencil" (click)="mostrarDialogEditar(cidade)" class="ui-button-warning espacar" ></button>
+            <button pButton type="button" icon="pi pi-trash" (click)="removerCidade(cidade)" class="ui-button-danger"></button>
+          </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+        <button type="button" pButton icon="pi pi-plus" (click)="mostrarDialogNovo()" label="Novo"></button>
+    </div>
+  </ng-template>
+</p-table>
+

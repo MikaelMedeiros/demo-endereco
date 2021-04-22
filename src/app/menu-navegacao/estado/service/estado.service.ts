@@ -15,8 +15,7 @@ export class EstadoService {
 
   getEstados(): Observable<Estado[]> {
     const url = `${this.base_url}/estados`;
-
-    return this.http.get(url);
+    return this.http.get<Estado[]>(url);
   }
 
   postEstado(estado: Estado): Observable<Estado> {

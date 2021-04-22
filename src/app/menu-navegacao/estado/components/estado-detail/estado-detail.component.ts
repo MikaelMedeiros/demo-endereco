@@ -49,7 +49,6 @@ export class EstadoDetailComponent {
       },
       error => alert(error.error.erro)
     );
-
   }
 
   private validarFormulario() {

@@ -1,17 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Estado } from '../../model/estado.interface';
 import { EstadoService } from '../../service/estado.service';
 
 @Component({
-  selector: 'app-estado-list',
   templateUrl: './estado-list.component.html',
   styleUrls: ['./estado-list.component.css']
 })
 export class EstadoListComponent implements OnInit {
 
-  listaDeEstados: Estado[] = [];
+  listaDeEstados: Observable<Estado[]>;
   estadoSelecionado: Estado = {nome: '', abreviacao: ''};
   errorObject = null;
   display: boolean;
@@ -55,5 +54,4 @@ export class EstadoListComponent implements OnInit {
       err => console.log(err)
     );
   }
-
 }
