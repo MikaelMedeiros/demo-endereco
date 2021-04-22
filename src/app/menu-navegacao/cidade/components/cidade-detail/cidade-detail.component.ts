@@ -67,7 +67,6 @@ export class CidadeDetailComponent implements OnInit, OnDestroy {
 
     this.cidadeService.postCidade(this.cidade).subscribe(
       data => {
-        console.log(data);
         this.fechar();
       },
       error => alert(error.error.erro)
@@ -80,7 +79,6 @@ export class CidadeDetailComponent implements OnInit, OnDestroy {
 
     this.cidadeService.putCidade(this.cidade).subscribe(
       data => {
-        console.log(data);
         this.fechar();
       },
       error => alert(error.error.erro)

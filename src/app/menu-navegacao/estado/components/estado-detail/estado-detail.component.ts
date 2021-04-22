@@ -31,7 +31,6 @@ export class EstadoDetailComponent {
 
     this.estadoService.postEstado(this.estado).subscribe(
       data => {
-        console.log(data);
         this.fechar();
       },
       error => alert(error.error.erro)
@@ -44,7 +43,6 @@ export class EstadoDetailComponent {
 
     this.estadoService.putEstado(this.estado).subscribe(
       data => {
-        console.log(data);
         this.fechar();
       },
       error => alert(error.error.erro)

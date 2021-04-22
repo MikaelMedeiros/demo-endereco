@@ -12,14 +12,13 @@ export class MenuComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('Uhul!');
     this.montarMenuDeNavegacao();
   }
 
   private montarMenuDeNavegacao() {
     this.menu = [
-      { label: 'Estado', icon: 'fa fa-fw fa-calendar', routerLink: './estado' },       
-      { label: 'Cidade', icon: 'fa fa-fw fa-bar-chart', routerLink: './cidade' },
+      { label: 'Estado', icon: 'pi pi-img', routerLink: './estado' },       
+      { label: 'Cidade', icon: 'pi pi-chart', routerLink: './cidade' },
   ];
   }
 

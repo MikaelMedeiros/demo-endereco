@@ -20,17 +20,13 @@ export class CidadeService {
   }
 
   postCidade(cidade: Cidade): Observable<Cidade> {
-    console.log('post antes', cidade);
     this.montarIdEstado(cidade);
-    console.log('post despues', cidade);
     return this.http.post<Cidade>(this.getBaseUrl(), cidade, this.getCabecalho());
   }
 
   putCidade(cidade: Cidade): Observable<any> {
     const idCidade = cidade._id;    
-    console.log('put antes', cidade);
     this.montarIdEstado(cidade);
-    console.log('put despues', cidade);
     const url = `${this.getBaseUrl()}/${idCidade}`;
 
     return this.http.put(url, cidade, this.getCabecalho());
