@@ -5,6 +5,6 @@ Esse projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli
 
 ## Rodando a demonstração
 
-Execute `ng serve` ou `npm start` em um terminal que esteja dentro da pasta do projeto para subir o servidor. Vá até [http://localhost:4200/](http://localhost:4200/). Pronto, já pode realizar o CRUD! :D 
+Execute `npm i`, depois `ng serve` ou `npm start` em um terminal que esteja dentro da pasta do projeto para subir o servidor. Vá até [http://localhost:4200/](http://localhost:4200/). Pronto, já pode realizar o CRUD! :D 
 
 
