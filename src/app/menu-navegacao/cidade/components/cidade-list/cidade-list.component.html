@@ -11,7 +11,7 @@
   <ng-template pTemplate="body" let-cidade>
       <tr>
           <td>{{cidade.nome}}</td>
-          <td>{{cidade.estadoId.nome}}</td>
+          <td>{{cidade.estadoId?.nome}}</td>
           <td>
             <button pButton type="button" icon="pi pi-pencil" (click)="mostrarDialogEditar(cidade)" class="ui-button-warning espacar" ></button>
             <button pButton type="button" icon="pi pi-trash" (click)="removerCidade(cidade)" class="ui-button-danger"></button>
